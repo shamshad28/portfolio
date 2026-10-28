@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./component/Navbar";
 import Hero3D from "./component/Hero3D";
 import Skill from "./component/Skill";
@@ -7,10 +7,11 @@ import Project from "./component/Project";
 import Achievements from "./component/Achievements";
 import Education from "./component/Education";
 import Contact from "./component/Contact";
-import { ArrowRight, Mail, Phone, Heart } from "lucide-react";
+import GalaxyBackground from "./component/GalaxyBackground";
+import { ArrowUpRight, Mail, Phone, Heart } from "lucide-react";
 
 export default function App() {
-  const phone = "7045421172";
+  const [isImmersiveGalaxy, setIsImmersiveGalaxy] = useState(false);
   const email = "shamkhan7045@gmail.com";
   const linkedin = "https://www.linkedin.com/in/shamshad-khan-817591229?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
   const github = "https://github.com/shamshad28";
@@ -36,8 +37,7 @@ export default function App() {
   }, []);
 
   const marqueeKeywords = [
-    "NEXCORE ALLIANCE LLP",
-    "CYBERPUNK FULL-STACK OPERATOR",
+    "FULL-STACK DEVELOPER",
     "MERN ARCHITECTURE & KERNEL",
     "REACT NATIVE (MOBILE HYPERDRIVE)",
     "NODE.JS & DISTRIBUTED SYSTEMS",
@@ -51,98 +51,68 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#03050c] text-slate-100 font-tech selection:bg-[#ff007f] selection:text-white">
-      {/* Background Cyber Ambient Glows */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 left-1/4 -translate-x-1/2 w-[700px] h-[700px] bg-[#00f0ff]/12 rounded-full blur-[170px]" />
-        <div className="absolute top-1/3 right-10 w-[600px] h-[600px] bg-[#ff007f]/10 rounded-full blur-[160px]" />
-        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#00ff9f]/8 rounded-full blur-[160px]" />
-        {/* Subtle Cyber Grid Lines Overlay */}
-        <div className="absolute inset-0 cyber-scanlines opacity-40 pointer-events-none" />
-      </div>
+    <div className="min-h-screen bg-black text-white font-tech selection:bg-[#D3FD50] selection:text-black relative">
+      {/* Full-Screen Interactive Particle Galaxy Simulation Backdrop */}
+      <GalaxyBackground
+        immersiveMode={isImmersiveGalaxy}
+        onToggleImmersive={setIsImmersiveGalaxy}
+      />
 
-      {/* Top Navbar */}
-      <Navbar />
+      {/* Main Website Content (Hidden smoothly during Immersive Full-Screen Simulation Mode) */}
+      <div
+        className={`relative z-10 transition-opacity duration-700 ${
+          isImmersiveGalaxy ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        {/* Top Navbar */}
+        <Navbar />
 
-      {/* Hero Section — Cyberpunk Editorial Style */}
-      <section id="about" className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-12 sm:pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll">
-        {/* Left Column: Cyberpunk Editorial Typography */}
-        <div className="lg:col-span-7 z-10 space-y-6">
-          {/* Index pill badge with Company & Status */}
-          <div className="inline-flex flex-wrap items-center gap-2 px-3 sm:px-3.5 py-1.5 bg-[#090e1f]/90 border border-[#00f0ff]/40 text-[11px] sm:text-xs font-mono text-slate-200 cyber-cut shadow-[0_0_15px_rgba(0,240,255,0.2)]">
-            <span className="w-2 h-2 rounded-full bg-[#00ff9f] animate-ping shrink-0" />
-            <span className="text-[#00f0ff] font-bold tracking-wider">[ SYSTEM ACTIVE // NEXCORE ALLIANCE ]</span>
-            <span className="text-[#ff007f] hidden sm:inline">•</span>
-            <span className="text-slate-300">Joined Sep 7, 2026</span>
-          </div>
+      {/* Hero Section — K72 Editorial Architecture */}
+      <section id="about" className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-4 sm:pb-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        {/* Left Column: Bold Typography & Agency Punchline */}
+        <div className="lg:col-span-7 z-10 space-y-4">
+          {/* K72 Ultra-Bold Punchline Headline */}
+          <div className="space-y-1">
 
-          {/* Cyberpunk Punchline Headline */}
-          <div className="space-y-2">
-            <h1 className="font-cyber text-3xl min-[420px]:text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.05] uppercase break-words">
-              <span className="text-white text-glow-cyan">SOFTWARE</span> <br />
-              ENGINEER<br />
-              <span className="text-[#00f0ff] underline decoration-[#ff007f] underline-offset-8">
+            <h1 className="font-heading text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[0.98] text-white">
+              ENGINEER <br />
+              <span className="text-[#D3FD50] tracking-tight">
                 FULL-STACK DEVELOPER
               </span>
             </h1>
           </div>
 
-          <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-tech">
-            I&apos;m <span className="text-white font-bold text-glow-cyan">Shamshad Khan</span> — Full-Stack Developer at{" "}
-            <a
-              href="https://www.linkedin.com/company/nexcore-alliance/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#00f0ff] hover:text-[#ff007f] font-bold underline underline-offset-4 decoration-[#00f0ff]/50 transition-colors"
-            >
-              Nexcore Alliance LLP
-            </a>
-            , architecting high-frequency real-time messaging platforms, distributed logging systems, AI-powered digital products, and cross-platform mobile runtimes.
+          <p className="text-neutral-400 text-sm sm:text-base max-w-xl leading-relaxed font-tech">
+            I&apos;m <span className="text-white font-semibold">Shamshad Khan</span> — Full-Stack Developer &amp; Software Engineer, architecting high-frequency real-time messaging platforms, distributed logging systems, AI-powered digital products, and cross-platform mobile runtimes.
           </p>
 
-          {/* Micro Stack Tags in Cyberpunk Chips */}
-          <div className="flex flex-wrap gap-2 text-xs font-mono">
-            <span className="px-3 py-1 bg-[#090e1f] border border-[#00f0ff]/30 text-[#00f0ff] cyber-cut hover:border-[#00f0ff] hover:shadow-[0_0_10px_rgba(0,240,255,0.4)] transition-all">
-              ⚡ Nexcore Alliance LLP
-            </span>
-            <span className="px-3 py-1 bg-[#090e1f] border border-[#ff007f]/30 text-[#ff007f] cyber-cut hover:border-[#ff007f] hover:shadow-[0_0_10px_rgba(255,0,127,0.4)] transition-all">
-              ⚡ MERN Stack Architecture
-            </span>
-            <span className="px-3 py-1 bg-[#090e1f] border border-[#00ff9f]/30 text-[#00ff9f] cyber-cut hover:border-[#00ff9f] hover:shadow-[0_0_10px_rgba(0,255,159,0.4)] transition-all">
-              ⚡ React Native
-            </span>
-            <span className="px-3 py-1 bg-[#090e1f] border border-[#fcee0a]/30 text-[#fcee0a] cyber-cut hover:border-[#fcee0a] hover:shadow-[0_0_10px_rgba(252,238,10,0.4)] transition-all">
-              ⚡ REST APIs &amp; WebSockets
-            </span>
-            <span className="px-3 py-1 bg-[#090e1f] border border-[#00f0ff]/30 text-[#00f0ff] cyber-cut hover:border-[#00f0ff] hover:shadow-[0_0_10px_rgba(0,240,255,0.4)] transition-all">
-              ⚡ AI &amp; Enterprise Solutions
-            </span>
-          </div>
+          {/* Micro Stack Tags in K72 Pill Chips */}
+
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
             <a
               href="#contact"
-              className="w-full sm:w-auto justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-gradient-to-r from-[#00f0ff] to-[#00c8ff] text-black font-black text-sm uppercase font-mono tracking-widest cyber-cut transition-all duration-300 shadow-[0_0_25px_rgba(0,240,255,0.5)] hover:shadow-[0_0_35px_rgba(255,0,127,0.7)] hover:from-[#ff007f] hover:to-[#ff2a85] hover:text-white flex items-center gap-2.5 hover:scale-105"
+              className="w-full sm:w-auto justify-center px-7 py-3 rounded-full bg-[#D3FD50] text-black font-extrabold text-xs uppercase font-mono tracking-wider transition-all duration-300 shadow-lime hover:bg-white hover:text-black hover:scale-[1.03] active:scale-95 flex items-center gap-2"
             >
               <span>TRANSMIT PACKET</span>
-              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+              <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
             </a>
 
             <a
               href="#projects"
-              className="w-full sm:w-auto text-center px-6 sm:px-7 py-3 sm:py-3.5 bg-[#090e1f]/90 hover:bg-[#0f172a] text-[#00f0ff] font-bold text-sm font-mono tracking-wider cyber-cut border border-[#00f0ff]/40 hover:border-[#ff007f]/70 hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-all"
+              className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-neutral-200 hover:text-[#D3FD50] font-medium text-xs font-mono tracking-wider border border-white/[0.12] hover:border-[#D3FD50] transition-all"
             >
-              ACCESS OPS [03]
+              WORK OPS
             </a>
 
-            {/* Social Icons Pill */}
-            <div className="flex items-center justify-center sm:justify-start gap-2 text-slate-300 pt-2 sm:pt-0">
+            {/* Social Icons Pill — Secure, No Raw Phone Exposure */}
+            <div className="flex items-center justify-center sm:justify-start gap-2 text-neutral-300">
               <a
                 href={github}
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 bg-[#090e1f] border border-[#00f0ff]/30 text-slate-300 cyber-cut hover:text-[#00f0ff] hover:border-[#00f0ff] hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all"
+                className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-neutral-300 hover:text-black hover:border-[#D3FD50] hover:bg-[#D3FD50] transition-all"
                 aria-label="GitHub Profile"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -153,7 +123,7 @@ export default function App() {
                 href={linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 bg-[#090e1f] border border-[#00f0ff]/30 text-slate-300 cyber-cut hover:text-[#00f0ff] hover:border-[#00f0ff] hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all"
+                className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-neutral-300 hover:text-black hover:border-[#D3FD50] hover:bg-[#D3FD50] transition-all"
                 aria-label="LinkedIn Profile"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -164,7 +134,7 @@ export default function App() {
                 href={instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 bg-[#090e1f] border border-[#00f0ff]/30 text-slate-300 cyber-cut hover:text-[#ff007f] hover:border-[#ff007f] hover:shadow-[0_0_15px_rgba(255,0,127,0.4)] transition-all"
+                className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-neutral-300 hover:text-black hover:border-[#D3FD50] hover:bg-[#D3FD50] transition-all"
                 aria-label="Instagram Profile"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -173,15 +143,16 @@ export default function App() {
               </a>
               <a
                 href={`mailto:${email}`}
-                className="p-3 bg-[#090e1f] border border-[#00f0ff]/30 text-slate-300 cyber-cut hover:text-[#fcee0a] hover:border-[#fcee0a] hover:shadow-[0_0_15px_rgba(252,238,10,0.4)] transition-all"
+                className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-neutral-300 hover:text-black hover:border-[#D3FD50] hover:bg-[#D3FD50] transition-all"
                 aria-label="Email Shamshad Khan"
               >
                 <Mail className="w-4 h-4" />
               </a>
               <a
-                href={`tel:${phone}`}
-                className="p-3 bg-[#090e1f] border border-[#00f0ff]/30 text-slate-300 cyber-cut hover:text-[#00ff9f] hover:border-[#00ff9f] hover:shadow-[0_0_15px_rgba(0,255,159,0.4)] transition-all"
-                aria-label="Call Shamshad Khan"
+                href="#contact"
+                className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-neutral-300 hover:text-black hover:border-[#D3FD50] hover:bg-[#D3FD50] transition-all"
+                aria-label="Contact Shamshad Khan"
+                title="Contact via Phone / Comms"
               >
                 <Phone className="w-4 h-4" />
               </a>
@@ -189,19 +160,19 @@ export default function App() {
           </div>
         </div>
 
-        {/* Right Column: Interactive 3D Model with Auto-Move */}
+        {/* Right Column: 3D Hologram */}
         <div className="lg:col-span-5">
           <Hero3D />
         </div>
       </section>
 
-      {/* Cyber Infinite Marquee Ticker */}
-      <div className="w-full overflow-hidden border-y border-[#00f0ff]/30 bg-[#060a17]/90 py-3.5 mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(0,240,255,0.15)]">
-        <div className="animate-marquee font-mono text-xs uppercase tracking-widest text-[#00f0ff] gap-10 items-center">
+      {/* K72 Minimal Continuous Marquee Ticker */}
+      <div className="w-full overflow-hidden border-y border-white/[0.08] bg-black py-2.5 mb-2">
+        <div className="animate-marquee font-mono text-xs uppercase tracking-widest text-neutral-300 gap-10 items-center">
           {marqueeKeywords.concat(marqueeKeywords).map((word, i) => (
             <div key={i} className="flex items-center gap-6 whitespace-nowrap">
-              <span className="hover:text-[#ff007f] transition-colors">{word}</span>
-              <span className="text-[#ff007f] font-bold">⚡</span>
+              <span className="hover:text-[#D3FD50] transition-colors">{word}</span>
+              <span className="text-[#D3FD50] font-bold">✦</span>
             </div>
           ))}
         </div>
@@ -225,50 +196,50 @@ export default function App() {
       {/* Let's Talk / Contact Section */}
       <Contact />
 
-      {/* Footer */}
-      <footer className="border-t border-[#00f0ff]/30 bg-[#020409] py-12 relative">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      {/* K72 Editorial Minimal Footer */}
+      <footer className="border-t border-white/[0.08] bg-black py-8 relative">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col items-center md:items-start">
-            <span className="font-cyber font-black text-xl tracking-tight text-white text-glow-cyan">
-              SHAMSHAD<span className="text-[#ff007f]">.</span>KHAN
+            <span className="font-heading font-black text-lg tracking-tight text-white">
+              SHAMSHAD<span className="text-[#D3FD50]">.</span>KHAN
             </span>
-            <p className="text-xs text-slate-400 mt-1 font-mono">
-              // FULL-STACK OPERATOR AT NEXCORE ALLIANCE LLP • ACTIVE PROTOCOL
+            <p className="text-[11px] text-neutral-400 mt-0.5 font-mono">
+              // FULL-STACK SOFTWARE ARCHITECT • ACTIVE PROTOCOL
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-slate-400 font-mono uppercase tracking-wider">
-            <a href="#about" className="hover:text-[#00f0ff] transition-colors">
-              // ABOUT
+          <div className="flex flex-wrap justify-center items-center gap-5 text-xs text-neutral-400 font-mono uppercase tracking-wider">
+            <a href="#about" className="hover:text-[#D3FD50] transition-colors">
+              // AGENCY
             </a>
-            <a href="#skills" className="hover:text-[#00f0ff] transition-colors">
+            <a href="#skills" className="hover:text-[#D3FD50] transition-colors">
               // ARSENAL
             </a>
-            <a href="#experience" className="hover:text-[#00f0ff] transition-colors">
+            <a href="#experience" className="hover:text-[#D3FD50] transition-colors">
               // CHRONICLES
             </a>
-            <a href="#projects" className="hover:text-[#00f0ff] transition-colors">
-              // OPS
+            <a href="#projects" className="hover:text-[#D3FD50] transition-colors">
+              // WORK
             </a>
-            <a href="#achievements" className="hover:text-[#00f0ff] transition-colors">
+            <a href="#achievements" className="hover:text-[#D3FD50] transition-colors">
               // CLEARANCE
             </a>
-            <a href="#education" className="hover:text-[#00f0ff] transition-colors">
+            <a href="#education" className="hover:text-[#D3FD50] transition-colors">
               // ARCHIVE
             </a>
-            <a href="#contact" className="hover:text-[#ff007f] transition-colors">
+            <a href="#contact" className="hover:text-[#D3FD50] transition-colors">
               // TRANSMIT
             </a>
           </div>
 
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
+          <div className="flex items-center gap-1.5 text-xs text-neutral-400 font-mono">
             <span>[ SYSTEM: NOMINAL ]</span>
-            <Heart className="w-3.5 h-3.5 text-[#ff007f] fill-[#ff007f]" />
+            <Heart className="w-3.5 h-3.5 text-[#D3FD50] fill-[#D3FD50]" />
             <span>&copy; {new Date().getFullYear()}</span>
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
-
 }

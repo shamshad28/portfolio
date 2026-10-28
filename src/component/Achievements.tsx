@@ -10,8 +10,6 @@ interface AchievementItem {
   color: string;
   glow: string;
   borderAccent: string;
-  badgeColor: string;
-  checkColor: string;
   icon: typeof ShieldCheck;
 }
 
@@ -23,11 +21,9 @@ const achievements: AchievementItem[] = [
     badge: "OFFICIAL CLEARANCE",
     description: "Certified proficiency in fundamental cybersecurity principles, identity & access management, threat defense mechanisms, and secure cloud environments.",
     topics: ["Threat Mitigation", "Identity & Access Management", "Network Security", "Security Operations"],
-    color: "from-[#00f0ff] via-[#0077b6] to-[#023e8a]",
-    glow: "rgba(0, 240, 255, 0.25)",
-    borderAccent: "hover:border-[#00f0ff] hover:shadow-[0_0_25px_rgba(0,240,255,0.3)]",
-    badgeColor: "text-[#00f0ff] bg-[#00f0ff]/10 border-[#00f0ff]/30",
-    checkColor: "text-[#00f0ff]",
+    color: "from-[#D3FD50] to-white",
+    glow: "rgba(211, 253, 80, 0.12)",
+    borderAccent: "hover:border-[#D3FD50]/50 hover:shadow-[0_8px_30px_-4px_rgba(211,253,80,0.2)]",
     icon: ShieldCheck,
   },
   {
@@ -37,92 +33,85 @@ const achievements: AchievementItem[] = [
     badge: "CORE KERNEL",
     description: "Certified core competency in Python programming, object-oriented concepts, algorithm design, standard libraries, and automated data processing pipelines.",
     topics: ["OOP Principles", "Data Structures", "Algorithm Design", "Scripting & Automation"],
-    color: "from-[#ff007f] via-[#fcee0a] to-[#ff007f]",
-    glow: "rgba(255, 0, 127, 0.25)",
-    borderAccent: "hover:border-[#ff007f] hover:shadow-[0_0_25px_rgba(255,0,127,0.3)]",
-    badgeColor: "text-[#ff007f] bg-[#ff007f]/10 border-[#ff007f]/30",
-    checkColor: "text-[#ff007f]",
+    color: "from-white to-[#D3FD50]",
+    glow: "rgba(255, 255, 255, 0.1)",
+    borderAccent: "hover:border-white/50 hover:shadow-[0_8px_30px_-4px_rgba(255,255,255,0.15)]",
     icon: Code,
   },
 ];
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="relative max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 border-t border-[#00f0ff]/20 reveal-on-scroll">
-      {/* Background Cyber Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#00f0ff]/5 rounded-full blur-[140px] pointer-events-none" />
+    <section id="achievements" className="relative max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 border-t border-white/[0.08] reveal-on-scroll">
+      {/* Background Ambient */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-[#D3FD50]/5 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Section Header */}
-      <div className="flex flex-col items-center text-center mb-10 sm:mb-14 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 bg-[#090e1f] border border-[#00f0ff]/40 text-xs font-mono text-[#00f0ff] mb-4 cyber-cut">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9f] animate-ping" />
-          <span className="font-bold tracking-wider">[ 04 // CLEARANCE ]</span>
-          <span className="text-[#ff007f]">•</span>
-          <span className="text-slate-300">SECURITY PROTOCOLS</span>
-        </div>
-        <h2 className="font-cyber text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
-          SECURITY <span className="text-[#00f0ff] text-glow-cyan">CLEARANCE</span> &amp; <span className="text-[#ff007f] text-glow-pink">CERTS</span>
+      <div className="flex flex-col items-center text-center mb-8 sm:mb-10 relative z-10">
+
+        <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+          SECURITY <span className="text-[#D3FD50] text-glow-lime">CLEARANCE</span> &amp; CERTS
         </h2>
-        <p className="mt-3 text-slate-400 text-sm md:text-base max-w-xl font-tech">
+        <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
           Verified industry credentials validating competencies in enterprise defense architectures and algorithmic programming.
         </p>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 relative z-10 max-w-4xl mx-auto">
         {achievements.map((item, idx) => {
           const Icon = item.icon;
           return (
             <div
               key={idx}
-              className={`p-5 sm:p-7 md:p-8 bg-[#070b18]/85 border border-slate-800 transition-all duration-300 group hover:translate-y-[-3px] relative flex flex-col justify-between cyber-cut ${item.borderAccent}`}
+              className={`p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover transition-all duration-300 group relative flex flex-col justify-between border border-white/[0.08] ${item.borderAccent}`}
               style={{
-                boxShadow: `0 0 30px -5px ${item.glow}`,
+                boxShadow: `0 8px 30px -4px ${item.glow}`,
               }}
             >
               {/* Top Accent Line */}
               <div
-                className={`absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r ${item.color} opacity-80 group-hover:opacity-100 transition-opacity`}
+                className={`absolute top-0 left-6 right-6 h-[2px] rounded-full bg-gradient-to-r ${item.color} opacity-70 group-hover:opacity-100 transition-opacity`}
               />
 
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 bg-[#0d1428] border border-[#00f0ff]/30 text-[#00f0ff] group-hover:scale-110 transition-transform cyber-cut">
-                    <Icon className="w-5 h-5 text-[#00f0ff]" />
+                  <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.1] text-white group-hover:text-[#D3FD50] group-hover:border-[#D3FD50]/40 group-hover:scale-105 transition-all">
+                    <Icon className="w-4 h-4" />
                   </div>
-                  <span className={`text-[10px] font-mono px-3 py-1 border cyber-cut tracking-wider ${item.badgeColor}`}>
+                  <span className="text-[10px] font-mono px-3 py-0.5 rounded-full border border-white/[0.12] bg-white/[0.03] text-[#D3FD50] tracking-wider font-semibold">
                     {item.badge}
                   </span>
                 </div>
 
-                <div className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">
+                <div className="text-xs font-mono text-neutral-500 uppercase tracking-wider mb-1">
                   // {item.issuer} • {item.category}
                 </div>
 
-                <h3 className="text-xl font-bold font-cyber text-slate-100 group-hover:text-[#00f0ff] transition-colors">
+                <h3 className="text-lg font-bold font-heading text-white group-hover:text-[#D3FD50] transition-colors">
                   {item.title}
                 </h3>
 
-                <p className="text-slate-400 text-sm mt-3 leading-relaxed font-tech">
+                <p className="text-neutral-400 text-xs sm:text-sm mt-2 leading-relaxed font-tech">
                   {item.description}
                 </p>
 
-                <div className="mt-5 space-y-1.5 font-tech">
+                <div className="mt-4 space-y-1.5 font-tech">
                   {item.topics.map((t, tIdx) => (
-                    <div key={tIdx} className="flex items-center gap-2 text-xs text-slate-300">
-                      <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${item.checkColor}`} />
+                    <div key={tIdx} className="flex items-center gap-2 text-xs text-neutral-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-[#D3FD50]" />
                       <span>{t}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
-                <span className="flex items-center gap-1.5 text-[#00ff9f]">
-                  <Lock className="w-3.5 h-3.5 text-[#00ff9f]" />
+              <div className="mt-6 pt-3.5 border-t border-white/[0.08] flex items-center justify-between text-xs text-neutral-400 font-mono">
+                <span className="flex items-center gap-1.5 text-neutral-300 group-hover:text-[#D3FD50] transition-colors">
+                  <Lock className="w-3 h-3 text-[#D3FD50]" />
                   ENCRYPTED // VERIFIED
                 </span>
-                <span className="text-[#00f0ff]">SHA-256 VALIDATED</span>
+                <span className="text-[#D3FD50] font-semibold text-[11px] tracking-wider">SHA-256 VALIDATED</span>
               </div>
             </div>
           );
@@ -131,4 +120,3 @@ export default function Achievements() {
     </section>
   );
 }
-
