@@ -8,9 +8,11 @@ import Achievements from "./component/Achievements";
 import Education from "./component/Education";
 import Contact from "./component/Contact";
 import GalaxyBackground from "./component/GalaxyBackground";
-import { ArrowUpRight, Mail, Phone, Heart } from "lucide-react";
+import IntroVideoLoader from "./component/IntroVideoLoader";
+import { ArrowUpRight, Mail, Phone, Heart, MessageSquare } from "lucide-react";
 
 export default function App() {
+  const [showIntro, setShowIntro] = useState(true);
   const [isImmersiveGalaxy, setIsImmersiveGalaxy] = useState(false);
   const email = "shamkhan7045@gmail.com";
   const linkedin = "https://www.linkedin.com/in/shamshad-khan-817591229?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
@@ -52,6 +54,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-tech selection:bg-[#D3FD50] selection:text-black relative">
+      {/* Starting Page Intro Video Loader */}
+      {showIntro && (
+        <IntroVideoLoader onFinish={() => setShowIntro(false)} />
+      )}
+
       {/* Full-Screen Interactive Particle Galaxy Simulation Backdrop */}
       <GalaxyBackground
         immersiveMode={isImmersiveGalaxy}
@@ -75,6 +82,7 @@ export default function App() {
           <div className="space-y-1">
 
             <h1 className="font-heading text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[0.98] text-white">
+              SOFTWARE <br />
               ENGINEER <br />
               <span className="text-[#D3FD50] tracking-tight">
                 FULL-STACK DEVELOPER
@@ -104,6 +112,14 @@ export default function App() {
               className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-neutral-200 hover:text-[#D3FD50] font-medium text-xs font-mono tracking-wider border border-white/[0.12] hover:border-[#D3FD50] transition-all"
             >
               WORK OPS
+            </a>
+
+            <a
+              href="#contact"
+              className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-neutral-200 hover:text-[#D3FD50] font-medium text-xs font-mono tracking-wider border border-white/[0.12] hover:border-[#D3FD50] transition-all flex items-center justify-center gap-2"
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-[#D3FD50]" />
+              <span>LET&apos;S TALK</span>
             </a>
 
             {/* Social Icons Pill — Secure, No Raw Phone Exposure */}

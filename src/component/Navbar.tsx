@@ -71,6 +71,9 @@ export default function Navbar() {
           <a href="#education" className="hover:text-[#D3FD50] transition-colors">
             Archive
           </a>
+          <a href="#contact" className="hover:text-[#D3FD50] transition-colors">
+            Let&apos;s Talk
+          </a>
           <a
             href="#contact"
             className="flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#D3FD50] text-black font-extrabold text-xs tracking-wider transition-all duration-300 hover:bg-white hover:text-black hover:scale-[1.03] active:scale-95 shadow-lime"
@@ -143,6 +146,13 @@ export default function Navbar() {
             className="block text-neutral-300 hover:text-[#D3FD50] py-1"
           >
             // ARCHIVE
+          </a>
+          <a
+            href="#contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-neutral-300 hover:text-[#D3FD50] py-1"
+          >
+            // LET&apos;S TALK
           </a>
           <a
             href="#contact"
