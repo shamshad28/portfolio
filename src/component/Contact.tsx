@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Mail, Phone, ExternalLink, Copy, Check, Send, Terminal, ShieldCheck } from "lucide-react";
+import { Mail, Phone, ExternalLink, Copy, Check, Send, Terminal, ShieldCheck, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { sendContactMessage } from "../services/contactService";
 
 export default function Contact() {
   const [copiedType, setCopiedType] = useState<string | null>(null);
   const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
-  const [isSent, setIsSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState<string>("");
 
   // Phone number masked with stars for privacy as requested by user
   const maskedPhone = "+91 704542****";
@@ -30,16 +32,36 @@ export default function Contact() {
     document.getElementById("packet-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(
-      formState.subject || `Inquiry from ${formState.name}`
-    )}&body=${encodeURIComponent(
-      `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`
-    )}`;
-    window.location.href = mailtoUrl;
-    setIsSent(true);
-    setTimeout(() => setIsSent(false), 5000);
+    e.stopPropagation();
+
+    if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
+      setStatus("error");
+      setStatusMessage("Please fill in all required fields (Name, Email, Message) before dispatching.");
+      return;
+    }
+
+    setStatus("submitting");
+    setStatusMessage("");
+
+    try {
+      const result = await sendContactMessage({
+        name: formState.name,
+        email: formState.email,
+        subject: formState.subject,
+        message: formState.message,
+      });
+
+      setStatus("success");
+      setStatusMessage(result.message || "PACKET DISPATCHED SUCCESSFULLY // MESSAGE DELIVERED");
+      setFormState({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (err: unknown) {
+      const errorText = err instanceof Error ? err.message : "Packet transmission failed. Please try again.";
+      setStatus("error");
+      setStatusMessage(errorText);
+    }
   };
 
   return (
@@ -49,7 +71,6 @@ export default function Contact() {
 
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-8 sm:mb-10 relative z-10">
-
         <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
           TRANSMIT <span className="text-[#D3FD50] text-glow-lime">PACKET</span> &amp; COMMS
         </h2>
@@ -308,17 +329,52 @@ export default function Contact() {
               />
             </div>
 
+            {/* Inline Status Messages */}
+            {status === "success" && (
+              <div className="mb-4 p-3 rounded-xl bg-[#D3FD50]/10 border border-[#D3FD50]/30 flex items-center gap-2 text-xs font-mono text-[#D3FD50] animate-fadeIn">
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-[#D3FD50]" />
+                <span>{statusMessage}</span>
+              </div>
+            )}
+            {status === "error" && (
+              <div className="mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center gap-2 text-xs font-mono text-red-400">
+                <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                <span>{statusMessage}</span>
+              </div>
+            )}
+
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-              <span className="text-xs text-neutral-500 font-mono text-center sm:text-left">
-                {isSent ? "DISPATCHING PACKET..." : "[PROTOCOL: 256-BIT ENCRYPTED]"}
+              <span className="text-xs text-neutral-500 font-mono text-center sm:text-left flex items-center gap-1.5">
+                {status === "submitting" ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin text-[#D3FD50]" />
+                    <span className="text-[#D3FD50]">DISPATCHING PACKET...</span>
+                  </>
+                ) : (
+                  "[PROTOCOL: 256-BIT ENCRYPTED]"
+                )}
               </span>
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-2.5 rounded-full bg-[#D3FD50] text-black font-extrabold text-sm uppercase tracking-wider transition-all shadow-lime hover:bg-white hover:text-black hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+                disabled={status === "submitting"}
+                className={`w-full sm:w-auto px-8 py-2.5 rounded-full text-black font-extrabold text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                  status === "submitting"
+                    ? "bg-neutral-600 text-neutral-300 cursor-not-allowed opacity-70"
+                    : "bg-[#D3FD50] shadow-lime hover:bg-white hover:text-black hover:scale-105 active:scale-95"
+                }`}
               >
-                <Send className="w-4 h-4 text-black stroke-[2.5]" />
-                <span>DISPATCH PACKET</span>
+                {status === "submitting" ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-black" />
+                    <span>DISPATCHING...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 text-black stroke-[2.5]" />
+                    <span>DISPATCH PACKET</span>
+                  </>
+                )}
               </button>
             </div>
           </form>

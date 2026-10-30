@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Float, ContactShadows, useGLTF, Center, Html } from "@react-three/drei";
 import { Suspense, useState, useMemo } from "react";
-import { Loader2, Mail, Phone, ExternalLink, Box, Camera, Sparkles, MessageSquare } from "lucide-react";
+import { Loader2, Mail, Phone, ExternalLink, Box, Camera, Sparkles } from "lucide-react";
 
 const MODEL_PATH = `${import.meta.env.BASE_URL}assets/monitor.glb`;
 const BATTLESTATION_IMG = `${import.meta.env.BASE_URL}assets/battlestation.jpg`;
@@ -65,7 +65,7 @@ export default function Hero3D() {
       ),
     },
     {
-      name: "Let's Talk",
+      name: "Direct Comms",
       url: "#contact",
       icon: <Phone className="w-3.5 h-3.5" />,
     },
@@ -120,14 +120,6 @@ export default function Hero3D() {
             <Camera className="w-3 h-3" />
             <span>STATION</span>
           </button>
-          <a
-            href="#contact"
-            className="px-2.5 py-1 text-xs font-medium tracking-wider text-neutral-400 hover:text-[#D3FD50] hover:bg-white/[0.06] transition-all rounded-full flex items-center gap-1"
-            title="Initiate Direct Contact"
-          >
-            <MessageSquare className="w-3 h-3 text-[#D3FD50]" />
-            <span>LET&apos;S TALK</span>
-          </a>
         </div>
       </div>
 
@@ -182,7 +174,7 @@ export default function Hero3D() {
             <pointLight position={[-2, 1, 3]} intensity={1.8} color="#ffffff" />
 
             <Suspense fallback={<ModelLoader />}>
-              <Float speed={1.0} rotationIntensity={0.25} floatIntensity={0.3} floatingRange={[-0.03, 0.03]}>
+              <Float speed={2.0} rotationIntensity={0.25} floatIntensity={0.3} floatingRange={[-0.03, 0.03]}>
                 <SceneModel />
               </Float>
               <ContactShadows position={[0, -0.72, 0]} opacity={0.65} scale={5.5} blur={2.0} far={2} color="#D3FD50" />
@@ -190,7 +182,7 @@ export default function Hero3D() {
 
             <OrbitControls
               autoRotate={true}
-              autoRotateSpeed={10}
+              autoRotateSpeed={7}
               enableZoom={false}
               enablePan={false}
               enableDamping
