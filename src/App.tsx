@@ -8,11 +8,9 @@ import Achievements from "./component/Achievements";
 import Education from "./component/Education";
 import Contact from "./component/Contact";
 import GalaxyBackground from "./component/GalaxyBackground";
-import IntroVideoLoader from "./component/IntroVideoLoader";
 import { ArrowUpRight, Mail, Phone, Heart, MessageSquare } from "lucide-react";
 
 export default function App() {
-  const [showIntro, setShowIntro] = useState(true);
   const [isImmersiveGalaxy, setIsImmersiveGalaxy] = useState(false);
   const email = "shamkhan7045@gmail.com";
   const linkedin = "https://www.linkedin.com/in/shamshad-khan-817591229?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
@@ -54,11 +52,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-tech selection:bg-[#D3FD50] selection:text-black relative">
-      {/* Starting Page Intro Video Loader */}
-      {showIntro && (
-        <IntroVideoLoader onFinish={() => setShowIntro(false)} />
-      )}
-
       {/* Full-Screen Interactive Particle Galaxy Simulation Backdrop */}
       <GalaxyBackground
         immersiveMode={isImmersiveGalaxy}
