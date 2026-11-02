@@ -17,7 +17,7 @@ const experiences: ExperienceItem[] = [
     role: "Full-Stack Developer",
     company: "Nexcore Alliance LLP",
     website: "https://www.linkedin.com/company/nexcore-alliance/",
-    location: "Kurla West, Mumbai",
+    location: "BKC, Mumbai",
     period: "Sep 7, 2026 – Present",
     type: "Full-Time Corporate Core",
     current: true,
@@ -108,7 +108,7 @@ export default function Experience() {
                   {exp.current && (
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.1] text-white text-xs font-mono font-medium">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#D3FD50] animate-pulse" />
-                      ACTIVE OPERATION // LEVEL 1
+
                     </span>
                   )}
                 </div>
