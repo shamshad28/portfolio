@@ -37,7 +37,7 @@ export default function App() {
   }, []);
 
   const marqueeKeywords = [
-    "FULL-STACK DEVELOPER",
+    "SOFTWARE ENGINEER",
     "MERN ARCHITECTURE & KERNEL",
     "REACT NATIVE (MOBILE HYPERDRIVE)",
     "NODE.JS & DISTRIBUTED SYSTEMS",
@@ -68,11 +68,10 @@ export default function App() {
 
         {/* Hero Section — K72 Editorial Architecture */}
         <section id="about" className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-4 sm:pb-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          {/* Left Column: Bold Typography & Agency Punchline */}
+          {/* Left Column: Bold Typography & Intro */}
           <div className="lg:col-span-7 z-10 space-y-4">
-            {/* K72 Ultra-Bold Punchline Headline */}
+            {/* Ultra-Bold Headline */}
             <div className="space-y-1">
-
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[0.98] text-white">
                 Hi, I&apos;m <br />
                 Shamshad khan <br />
@@ -86,16 +85,14 @@ export default function App() {
               I&apos;m <span className="text-white font-semibold">Shamshad Khan</span> — Software Engineer, architecting high-frequency real-time messaging platforms, distributed logging systems, AI-powered digital products, and cross-platform mobile runtimes.
             </p>
 
-            {/* Micro Stack Tags in K72 Pill Chips */}
-
-
             {/* Action CTAs */}
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
               <a
                 href="#contact"
                 className="w-full sm:w-auto justify-center px-7 py-3 rounded-full bg-[#D3FD50] text-black font-extrabold text-xs uppercase font-mono tracking-wider transition-all duration-300 shadow-lime hover:bg-white hover:text-black hover:scale-[1.03] active:scale-95 flex items-center gap-2"
               >
-                <span>TRANSMIT PACKET</span>
+                <MessageSquare className="w-4 h-4 stroke-[2.5]" />
+                <span>LET&apos;S TALK</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </a>
 
@@ -103,15 +100,7 @@ export default function App() {
                 href="#projects"
                 className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-neutral-200 hover:text-[#D3FD50] font-medium text-xs font-mono tracking-wider border border-white/[0.12] hover:border-[#D3FD50] transition-all"
               >
-                WORK OPS
-              </a>
-
-              <a
-                href="#contact"
-                className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-neutral-200 hover:text-[#D3FD50] font-medium text-xs font-mono tracking-wider border border-white/[0.12] hover:border-[#D3FD50] transition-all flex items-center justify-center gap-2"
-              >
-                <MessageSquare className="w-3.5 h-3.5 text-[#D3FD50]" />
-                <span>LET&apos;S TALK</span>
+                PROJECTS
               </a>
 
               {/* Social Icons Pill — Secure, No Raw Phone Exposure */}
@@ -174,7 +163,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* K72 Minimal Continuous Marquee Ticker */}
+        {/* Minimal Continuous Marquee Ticker */}
         <div className="w-full overflow-hidden border-y border-white/[0.08] bg-black py-2.5 mb-2">
           <div className="animate-marquee font-mono text-xs uppercase tracking-widest text-neutral-300 gap-10 items-center">
             {marqueeKeywords.concat(marqueeKeywords).map((word, i) => (
@@ -204,7 +193,7 @@ export default function App() {
         {/* Let's Talk / Contact Section */}
         <Contact />
 
-        {/* K72 Editorial Minimal Footer */}
+        {/* Minimal Footer */}
         <footer className="border-t border-white/[0.08] bg-black py-8 relative">
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-col items-center md:items-start">
@@ -212,31 +201,31 @@ export default function App() {
                 SHAMSHAD<span className="text-[#D3FD50]">.</span>KHAN
               </span>
               <p className="text-[11px] text-neutral-400 mt-0.5 font-mono">
-              // FULL-STACK SOFTWARE ARCHITECT • ACTIVE PROTOCOL
+                // SOFTWARE ENGINEER • ACTIVE PROTOCOL
               </p>
             </div>
 
             <div className="flex flex-wrap justify-center items-center gap-5 text-xs text-neutral-400 font-mono uppercase tracking-wider">
               <a href="#about" className="hover:text-[#D3FD50] transition-colors">
-              // AGENCY
+                // ABOUT
               </a>
               <a href="#skills" className="hover:text-[#D3FD50] transition-colors">
-              // ARSENAL
+                // SKILLS
               </a>
               <a href="#experience" className="hover:text-[#D3FD50] transition-colors">
-              // CHRONICLES
+                // EXPERIENCE
               </a>
               <a href="#projects" className="hover:text-[#D3FD50] transition-colors">
-              // WORK
+                // PROJECTS
               </a>
               <a href="#achievements" className="hover:text-[#D3FD50] transition-colors">
-              // CLEARANCE
+                // ACHIEVEMENTS
               </a>
               <a href="#education" className="hover:text-[#D3FD50] transition-colors">
-              // ARCHIVE
+                // EDUCATION
               </a>
               <a href="#contact" className="hover:text-[#D3FD50] transition-colors">
-              // TRANSMIT
+                // LET&apos;S TALK
               </a>
             </div>
 

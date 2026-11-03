@@ -18,7 +18,7 @@ const achievements: AchievementItem[] = [
     title: "Microsoft Cyber Security Certification",
     issuer: "MICROSOFT CORP",
     category: "Security Architecture & Threat Defense",
-    badge: "OFFICIAL CLEARANCE",
+    badge: "VERIFIED CREDENTIAL",
     description: "Certified proficiency in fundamental cybersecurity principles, identity & access management, threat defense mechanisms, and secure cloud environments.",
     topics: ["Threat Mitigation", "Identity & Access Management", "Network Security", "Security Operations"],
     color: "from-[#D3FD50] to-white",
@@ -50,7 +50,7 @@ export default function Achievements() {
       <div className="flex flex-col items-center text-center mb-8 sm:mb-10 relative z-10">
 
         <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
-          SECURITY <span className="text-[#D3FD50] text-glow-lime">CLEARANCE</span> &amp; CERTS
+          HONORS &amp; <span className="text-[#D3FD50] text-glow-lime">ACHIEVEMENTS</span>
         </h2>
         <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
           Verified industry credentials validating competencies in enterprise defense architectures and algorithmic programming.

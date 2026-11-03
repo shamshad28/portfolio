@@ -68,7 +68,7 @@ export default function Project() {
       <div className="flex flex-col items-center text-center mb-8 sm:mb-10 relative z-10">
 
         <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
-          DEPLOYED <span className="text-[#D3FD50] text-glow-lime">OPERATIONS</span> &amp; CODE
+          FEATURED <span className="text-[#D3FD50] text-glow-lime">PROJECTS</span> &amp; CODE
         </h2>
         <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
           Production-grade applications showcasing WebSocket real-time concurrency, cross-platform mobile engineering, and telemetry pipelines.

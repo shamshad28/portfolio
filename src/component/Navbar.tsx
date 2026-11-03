@@ -37,7 +37,7 @@ export default function Navbar() {
                 SHAMSHAD<span className="text-[#D3FD50]">.</span>KHAN
               </span>
               <span className="text-[10px] font-mono text-neutral-400 tracking-wider uppercase -mt-1 font-semibold">
-                FULL-STACK SOFTWARE ENGINEER
+                SOFTWARE ENGINEER
               </span>
             </div>
           </a>
@@ -51,34 +51,31 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Quicknav — K72 Agency Editorial Style */}
+        {/* Desktop Quicknav */}
         <nav className="hidden lg:flex items-center gap-6 text-xs uppercase font-mono font-medium tracking-wider text-neutral-300">
           <a href="#about" className="hover:text-[#D3FD50] transition-colors">
-            Agency
+            About
           </a>
           <a href="#skills" className="hover:text-[#D3FD50] transition-colors">
-            Arsenal
+            Skills
           </a>
           <a href="#experience" className="hover:text-[#D3FD50] transition-colors">
-            Chronicles
+            Experience
           </a>
           <a href="#projects" className="hover:text-[#D3FD50] transition-colors">
-            Work
+            Projects
           </a>
           <a href="#achievements" className="hover:text-[#D3FD50] transition-colors">
-            Clearance
+            Achievements
           </a>
           <a href="#education" className="hover:text-[#D3FD50] transition-colors">
-            Archive
-          </a>
-          <a href="#contact" className="hover:text-[#D3FD50] transition-colors">
-            Let&apos;s Talk
+            Education
           </a>
           <a
             href="#contact"
             className="flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#D3FD50] text-black font-extrabold text-xs tracking-wider transition-all duration-300 hover:bg-white hover:text-black hover:scale-[1.03] active:scale-95 shadow-lime"
           >
-            <span>TRANSMIT</span>
+            <span>LET&apos;S TALK</span>
             <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
           </a>
         </nav>
@@ -110,56 +107,49 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(false)}
             className="block text-neutral-300 hover:text-[#D3FD50] py-1"
           >
-            // AGENCY
+            // ABOUT
           </a>
           <a
             href="#skills"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-neutral-300 hover:text-[#D3FD50] py-1"
           >
-            // ARSENAL
+            // SKILLS
           </a>
           <a
             href="#experience"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-neutral-300 hover:text-[#D3FD50] py-1"
           >
-            // CHRONICLES
+            // EXPERIENCE
           </a>
           <a
             href="#projects"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-neutral-300 hover:text-[#D3FD50] py-1"
           >
-            // WORK
+            // PROJECTS
           </a>
           <a
             href="#achievements"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-neutral-300 hover:text-[#D3FD50] py-1"
           >
-            // CLEARANCE
+            // ACHIEVEMENTS
           </a>
           <a
             href="#education"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-neutral-300 hover:text-[#D3FD50] py-1"
           >
-            // ARCHIVE
-          </a>
-          <a
-            href="#contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-neutral-300 hover:text-[#D3FD50] py-1"
-          >
-            // LET&apos;S TALK
+            // EDUCATION
           </a>
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-[#D3FD50] text-black font-extrabold text-sm mt-2 shadow-lime"
           >
-            <span>TRANSMIT PACKET</span>
+            <span>LET&apos;S TALK</span>
             <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
           </a>
         </div>

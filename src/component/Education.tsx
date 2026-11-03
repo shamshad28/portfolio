@@ -56,7 +56,7 @@ export default function Education() {
       <div className="flex flex-col items-center text-center mb-8 sm:mb-10 relative z-10 reveal-on-scroll">
 
         <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
-          DATA <span className="text-[#D3FD50] text-glow-lime">ARCHIVES</span> &amp; DEGREES
+          ACADEMIC <span className="text-[#D3FD50] text-glow-lime">EDUCATION</span> &amp; DEGREES
         </h2>
         <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
           Formal software engineering foundations, algorithmic computing, and system architecture qualifications.

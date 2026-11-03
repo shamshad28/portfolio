@@ -69,7 +69,7 @@ export default function Experience() {
       <div className="flex flex-col items-center text-center mb-6 sm:mb-8 relative z-10">
 
         <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white">
-          CAREER <span className="text-[#D3FD50]">CHRONICLES</span> &amp; LOG
+          WORK <span className="text-[#D3FD50]">EXPERIENCE</span> &amp; HISTORY
         </h2>
         <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
           Full-stack deployments across corporate software engines, enterprise real-time messaging, AI automation, and high-uptime backend services.

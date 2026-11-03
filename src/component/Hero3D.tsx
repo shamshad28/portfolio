@@ -1,10 +1,9 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Float, ContactShadows, useGLTF, Center, Html } from "@react-three/drei";
 import { Suspense, useState, useMemo } from "react";
-import { Loader2, Mail, Phone, ExternalLink, Box, Camera, Sparkles } from "lucide-react";
+import { Loader2, Mail, Phone, ExternalLink, Box } from "lucide-react";
 
 const MODEL_PATH = `${import.meta.env.BASE_URL}assets/monitor.glb`;
-const BATTLESTATION_IMG = `${import.meta.env.BASE_URL}assets/battlestation.jpg`;
 
 function ModelLoader() {
   return (
@@ -34,7 +33,6 @@ useGLTF.preload(MODEL_PATH);
 
 export default function Hero3D() {
   const [activeHover, setActiveHover] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<"3d" | "station">("3d");
 
   const socials = [
     {
@@ -92,66 +90,19 @@ export default function Hero3D() {
         ─ ┘
       </div>
 
-      {/* Top Header Bar with Badge and Switcher */}
+      {/* Top Header Bar with 3D Core Badge */}
       <div className="w-full flex items-center justify-end z-20 px-4 pt-1">
-        {/* Top Right: View Switcher */}
-        <div className="flex items-center gap-1 p-0.5 rounded-full bg-black/90 border border-white/10 backdrop-blur-md shadow-sm">
-          <button
-            type="button"
-            onClick={() => setViewMode("3d")}
-            className={`px-2.5 py-1 text-xs font-medium tracking-wider transition-all rounded-full flex items-center gap-1 cursor-pointer ${viewMode === "3d"
-              ? "bg-[#D3FD50] text-black font-extrabold shadow-lime"
-              : "text-neutral-400 hover:text-white"
-              }`}
-            title="Switch to 3D Hologram"
-          >
-            <Box className="w-3 h-3" />
-            <span>3D CORE</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setViewMode("station")}
-            className={`px-2.5 py-1 text-xs font-medium tracking-wider transition-all rounded-full flex items-center gap-1 cursor-pointer ${viewMode === "station"
-              ? "bg-white text-black font-extrabold"
-              : "text-neutral-400 hover:text-white"
-              }`}
-            title="Switch to Battlestation Cam"
-          >
-            <Camera className="w-3 h-3" />
-            <span>STATION</span>
-          </button>
+        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/90 border border-white/10 text-[#D3FD50] font-mono text-xs backdrop-blur-md shadow-sm">
+          <Box className="w-3.5 h-3.5" />
+          <span className="font-semibold tracking-wider">3D CORE</span>
         </div>
       </div>
 
       {/* Main Viewport: Centered Canvas Container (544px by 358.67px as requested) */}
       <div className="w-full flex-1 flex items-center justify-center my-auto relative">
-        {/* Battlestation Cam View */}
-        <div
-          className={`relative w-full max-w-[544px] h-[358.67px] rounded-xl overflow-hidden select-none bg-black border border-white/10 shadow-lg ${viewMode === "station" ? "block" : "hidden"
-            }`}
-          style={{ width: "100%", maxWidth: "544px", height: "358.67px" }}
-        >
-          <img
-            src={BATTLESTATION_IMG}
-            alt="Cyberpunk Developer Battlestation"
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/50 pointer-events-none" />
-
-          {/* Telemetry Info Badge */}
-          <div className="absolute top-4 left-4 z-20 hidden sm:flex flex-col gap-0.5 px-3 py-1.5 rounded-xl bg-black/90 border border-white/10 text-xs font-mono text-neutral-200 backdrop-blur-md shadow-lg">
-            <div className="flex items-center gap-1.5 text-[#D3FD50] font-semibold text-[11px]">
-              <Sparkles className="w-3 h-3 text-[#D3FD50]" />
-              <span>LIVE CAM // BATTLESTATION TELEMETRY</span>
-            </div>
-            <span className="text-[10px] text-neutral-400">// DUAL-HUD DISPLAY • DEV ENVIRONMENT</span>
-          </div>
-        </div>
-
         {/* 3D Model Canvas View - Stays mounted so WebGL context is never lost */}
         <div
-          className={`w-full max-w-[544px] h-[358.67px] relative flex items-center justify-center ${viewMode === "3d" ? "block" : "hidden"
-            }`}
+          className="w-full max-w-[544px] h-[358.67px] relative flex items-center justify-center"
           style={{ width: "100%", maxWidth: "544px", height: "358.67px" }}
         >
           <Canvas
@@ -182,7 +133,7 @@ export default function Hero3D() {
 
             <OrbitControls
               autoRotate={true}
-              autoRotateSpeed={7}
+              autoRotateSpeed={2.2}
               enableZoom={false}
               enablePan={false}
               enableDamping

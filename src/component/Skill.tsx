@@ -51,7 +51,7 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "TOOLS // DEVOPS ARSENAL",
+    title: "TOOLS // DEVOPS & INFRA",
     subtitle: "Version Control, Telemetry & Testing",
     slot: "DEVOPS",
     icon: Wrench,
@@ -78,7 +78,7 @@ export default function Skill() {
       <div className="flex flex-col items-center text-center mb-6 sm:mb-8 relative z-10">
 
         <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white">
-          TECH <span className="text-[#D3FD50]">ARSENAL</span> &amp; STACK
+          TECH <span className="text-[#D3FD50]">SKILLS</span> &amp; STACK
         </h2>
         <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
           Engineered with modern full-stack web and mobile protocols, high-concurrency APIs, resilient database clusters, and rapid dev pipelines.

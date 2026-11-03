@@ -72,7 +72,7 @@ export default function Contact() {
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-8 sm:mb-10 relative z-10">
         <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
-          TRANSMIT <span className="text-[#D3FD50] text-glow-lime">PACKET</span> &amp; COMMS
+          LET&apos;S <span className="text-[#D3FD50] text-glow-lime">TALK</span> &amp; CONNECT
         </h2>
         <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
           Have an engineering project, high-impact role, or technical collaboration? Initiate direct packet transmission across any channel.
