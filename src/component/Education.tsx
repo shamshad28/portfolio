@@ -8,7 +8,6 @@ interface EducationItem {
   period: string;
   score?: string;
   scoreType?: string;
-  badge: string;
   highlight?: boolean;
 }
 
@@ -19,7 +18,6 @@ const educationData: EducationItem[] = [
     institution: "H.J. Theem College of Engineering",
     location: "Mumbai",
     period: "2022 – 2025",
-    badge: "UNDERGRADUATE // DEGREE",
     highlight: true,
   },
   {
@@ -30,7 +28,6 @@ const educationData: EducationItem[] = [
     period: "2019 – 2022",
     score: "70.83%",
     scoreType: "Aggregate Percentage",
-    badge: "DIPLOMA // TECH",
     highlight: false,
   },
   {
@@ -41,7 +38,6 @@ const educationData: EducationItem[] = [
     period: "2019",
     score: "79.80%",
     scoreType: "Board Percentage",
-    badge: "FOUNDATIONAL // SSC",
     highlight: false,
   },
 ];
@@ -54,7 +50,6 @@ export default function Education() {
 
       {/* Section Header */}
       <div className="flex flex-col items-center text-center mb-8 sm:mb-10 relative z-10 reveal-on-scroll">
-
         <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
           ACADEMIC <span className="text-[#D3FD50] text-glow-lime">EDUCATION</span> &amp; DEGREES
         </h2>
@@ -74,8 +69,9 @@ export default function Education() {
             return (
               <div
                 key={idx}
-                className={`relative flex flex-col sm:flex-row items-center gap-4 ${isEven ? "sm:flex-row-reverse reveal-from-left" : "reveal-from-right"
-                  }`}
+                className={`relative flex flex-col sm:flex-row items-center gap-4 ${
+                  isEven ? "sm:flex-row-reverse reveal-from-left" : "reveal-from-right"
+                }`}
               >
                 {/* Timeline Center Node */}
                 <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-black border border-[#D3FD50] flex items-center justify-center shadow-[0_0_15px_rgba(211,253,80,0.4)] z-20 hidden sm:flex">
@@ -84,16 +80,14 @@ export default function Education() {
 
                 {/* Card */}
                 <div
-                  className={`w-full sm:w-[calc(50%-1.75rem)] p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover transition-all duration-300 ${item.highlight
+                  className={`w-full sm:w-[calc(50%-1.75rem)] p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover transition-all duration-300 ${
+                    item.highlight
                       ? "border-[#D3FD50]/40 shadow-lime bg-[#0d0d0d]"
                       : "border-white/[0.08] hover:border-white/30 bg-[#0d0d0d]"
-                    }`}
+                  }`}
                 >
-                  {/* Top Badge & Duration */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#D3FD50] bg-white/[0.04] px-2.5 py-0.5 rounded-full border border-white/[0.1] font-semibold">
-                      {item.badge}
-                    </span>
+                  {/* Top Duration */}
+                  <div className="flex items-center justify-end mb-3">
                     <div className="flex items-center gap-1.5 text-xs font-mono text-neutral-400">
                       <Calendar className="w-3 h-3 text-[#D3FD50]" />
                       <span>{item.period}</span>
@@ -115,7 +109,9 @@ export default function Education() {
                   {/* Institution & Location */}
                   <div className="mt-2 text-xs sm:text-sm text-neutral-400 flex items-center gap-1.5 font-tech">
                     <MapPin className="w-3 h-3 text-neutral-300 shrink-0" />
-                    <span>{item.institution}, {item.location}</span>
+                    <span>
+                      {item.institution}, {item.location}
+                    </span>
                   </div>
 
                   {/* Score / Grade Tag or Status */}

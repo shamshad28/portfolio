@@ -37,6 +37,7 @@ export default function App() {
   }, []);
 
   const marqueeKeywords = [
+    "FULL-STACK DEVELOPER",
     "SOFTWARE ENGINEER",
     "MERN ARCHITECTURE & KERNEL",
     "REACT NATIVE (MOBILE HYPERDRIVE)",

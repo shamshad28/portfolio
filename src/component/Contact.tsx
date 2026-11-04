@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, ExternalLink, Copy, Check, Send, Terminal, ShieldCheck, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, Phone, ExternalLink, Copy, Check, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { sendContactMessage } from "../services/contactService";
 
 export default function Contact() {
@@ -29,7 +29,7 @@ export default function Contact() {
       subject: "Direct Voice Call Request // Technical Collaboration",
       message: prev.message || "Hi Shamshad, I would like to schedule a voice call with you to discuss...",
     }));
-    document.getElementById("packet-form")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,7 +38,7 @@ export default function Contact() {
 
     if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
       setStatus("error");
-      setStatusMessage("Please fill in all required fields (Name, Email, Message) before dispatching.");
+      setStatusMessage("Please fill in all required fields (Name, Email, Message) before sending.");
       return;
     }
 
@@ -54,11 +54,11 @@ export default function Contact() {
       });
 
       setStatus("success");
-      setStatusMessage(result.message || "PACKET DISPATCHED SUCCESSFULLY // MESSAGE DELIVERED");
+      setStatusMessage(result.message || "MESSAGE SENT SUCCESSFULLY");
       setFormState({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setStatus("idle"), 5000);
     } catch (err: unknown) {
-      const errorText = err instanceof Error ? err.message : "Packet transmission failed. Please try again.";
+      const errorText = err instanceof Error ? err.message : "Message delivery failed. Please try again.";
       setStatus("error");
       setStatusMessage(errorText);
     }
@@ -75,7 +75,7 @@ export default function Contact() {
           LET&apos;S <span className="text-[#D3FD50] text-glow-lime">TALK</span> &amp; CONNECT
         </h2>
         <p className="mt-2 text-neutral-400 text-xs sm:text-sm md:text-base max-w-xl font-tech">
-          Have an engineering project, high-impact role, or technical collaboration? Initiate direct packet transmission across any channel.
+          Have an engineering project, high-impact role, or technical collaboration? Reach out directly across any channel.
         </p>
       </div>
 
@@ -91,8 +91,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5 text-[11px] font-mono uppercase text-[#D3FD50] tracking-wider font-semibold">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#D3FD50]" />
-                    <span>// VOICE_LINK • PRIVACY PROTECTED</span>
+                    <span>// PHONE</span>
                   </div>
                   <div className="text-base font-bold text-white font-mono tracking-wider mt-0.5">
                     {maskedPhone}
@@ -103,7 +102,7 @@ export default function Contact() {
                 type="button"
                 onClick={() => handleCopy(maskedPhone, "phone")}
                 className="p-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-neutral-400 hover:text-[#D3FD50] transition-colors text-xs flex items-center gap-1 border border-white/[0.08] cursor-pointer"
-                title="Copy secure contact ID"
+                title="Copy phone number"
               >
                 {copiedType === "phone" ? (
                   <>
@@ -131,9 +130,9 @@ export default function Contact() {
               <a
                 href={`mailto:${email}?subject=Direct%20Voice%20Call%20Request`}
                 className="flex-1 py-2 px-3 rounded-xl bg-[#D3FD50]/10 hover:bg-[#D3FD50]/20 text-[#D3FD50] border border-[#D3FD50]/30 text-xs font-mono font-semibold text-center transition-colors flex items-center justify-center gap-1.5"
-                title="Request call via secure email dispatch"
+                title="Send email request"
               >
-                <Mail className="w-3.5 h-3.5" /> COMMS DISPATCH
+                <Mail className="w-3.5 h-3.5" /> SEND EMAIL
               </a>
             </div>
           </div>
@@ -146,7 +145,9 @@ export default function Contact() {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-mono uppercase text-[#D3FD50] tracking-wider font-semibold">// DATALINK • DIRECT EMAIL</div>
+                  <div className="text-[11px] font-mono uppercase text-[#D3FD50] tracking-wider font-semibold">
+                    // DIRECT EMAIL
+                  </div>
                   <a
                     href={`mailto:${email}`}
                     className="text-sm sm:text-base font-bold text-white hover:text-[#D3FD50] transition-colors break-all font-mono"
@@ -179,7 +180,7 @@ export default function Contact() {
                 href={`mailto:${email}`}
                 className="w-full py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-neutral-200 hover:text-[#D3FD50] text-xs font-mono font-semibold text-center transition-colors flex items-center justify-center gap-1.5 border border-white/[0.1] hover:border-[#D3FD50]/40"
               >
-                <Mail className="w-3.5 h-3.5 text-[#D3FD50]" /> COMPOSE PACKET
+                <Mail className="w-3.5 h-3.5 text-[#D3FD50]" /> SEND EMAIL
               </a>
             </div>
           </div>
@@ -254,27 +255,21 @@ export default function Contact() {
         {/* Right Column: Direct Interactive Contact Form */}
         <div className="lg:col-span-7">
           <form
-            id="packet-form"
+            id="contact-form"
             onSubmit={handleSubmit}
             className="p-6 sm:p-7 rounded-2xl glass-panel relative border border-white/[0.08]"
           >
             <div className="mb-4">
-              <div className="flex items-center gap-2 mb-1">
-                <Terminal className="w-4 h-4 text-[#D3FD50]" />
-                <span className="text-xs font-mono text-[#D3FD50] uppercase tracking-wider font-semibold">
-                  TERMINAL // PACKET TRANSMISSION
-                </span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold font-heading text-white">Direct Message Transmission</h3>
+              <h3 className="text-lg sm:text-xl font-bold font-heading text-white">Send a Message</h3>
               <p className="text-xs text-neutral-400 mt-0.5 font-tech">
-                Dispatch an encrypted message packet directly to <span className="text-[#D3FD50] font-mono break-all">{email}</span>.
+                Send a direct message to <span className="text-[#D3FD50] font-mono break-all">{email}</span>.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3">
               <div>
                 <label className="block text-xs font-mono uppercase text-neutral-300 mb-1 font-medium">
-                  // SENDER NAME
+                  // NAME
                 </label>
                 <input
                   type="text"
@@ -288,7 +283,7 @@ export default function Contact() {
 
               <div>
                 <label className="block text-xs font-mono uppercase text-neutral-300 mb-1 font-medium">
-                  // RETURN ADDRESS (EMAIL)
+                  // EMAIL
                 </label>
                 <input
                   type="email"
@@ -303,7 +298,7 @@ export default function Contact() {
 
             <div className="mb-3">
               <label className="block text-xs font-mono uppercase text-neutral-300 mb-1 font-medium">
-                // PACKET SUBJECT
+                // SUBJECT
               </label>
               <input
                 type="text"
@@ -317,7 +312,7 @@ export default function Contact() {
 
             <div className="mb-4">
               <label className="block text-xs font-mono uppercase text-neutral-300 mb-1 font-medium">
-                // ENCRYPTED PAYLOAD (MESSAGE)
+                // MESSAGE
               </label>
               <textarea
                 required
@@ -343,17 +338,15 @@ export default function Contact() {
               </div>
             )}
 
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-              <span className="text-xs text-neutral-500 font-mono text-center sm:text-left flex items-center gap-1.5">
-                {status === "submitting" ? (
-                  <>
+            <div className="flex items-center justify-between gap-3">
+              <div className="text-xs text-neutral-500 font-mono">
+                {status === "submitting" && (
+                  <span className="flex items-center gap-1.5 text-[#D3FD50]">
                     <Loader2 className="w-3.5 h-3.5 animate-spin text-[#D3FD50]" />
-                    <span className="text-[#D3FD50]">DISPATCHING PACKET...</span>
-                  </>
-                ) : (
-                  "[PROTOCOL: 256-BIT ENCRYPTED]"
+                    <span>SENDING...</span>
+                  </span>
                 )}
-              </span>
+              </div>
 
               <button
                 type="submit"
@@ -367,12 +360,12 @@ export default function Contact() {
                 {status === "submitting" ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin text-black" />
-                    <span>DISPATCHING...</span>
+                    <span>SENDING...</span>
                   </>
                 ) : (
                   <>
                     <Send className="w-4 h-4 text-black stroke-[2.5]" />
-                    <span>DISPATCH PACKET</span>
+                    <span>SEND MESSAGE</span>
                   </>
                 )}
               </button>

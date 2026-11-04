@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import * as THREE from "three";
-import { Sparkles, RotateCcw, Maximize2, Minimize2, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 
 interface GalaxyBackgroundProps {
   immersiveMode?: boolean;
@@ -14,19 +14,12 @@ export default function GalaxyBackground({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Simulation telemetry state
-  const [currentPhase, setCurrentPhase] = useState<string>("PHASE 1: FADE-IN");
+  // Simulation state
   const [particleCount] = useState<number>(22000);
   const [isImmersive, setIsImmersive] = useState<boolean>(immersiveMode);
-  const [showHUD, setShowHUD] = useState<boolean>(true);
 
   // Animation reset trigger
   const resetTriggerRef = useRef<number>(Date.now());
-
-  const handleReset = useCallback(() => {
-    resetTriggerRef.current = Date.now();
-    setCurrentPhase("PHASE 1: FADE-IN");
-  }, []);
 
   const toggleImmersive = useCallback(() => {
     const nextVal = !isImmersive;
@@ -306,7 +299,6 @@ export default function GalaxyBackground({
     // --- MAIN RENDER & SIMULATION LOOP ---
     let animationFrameId: number;
     let lastTime = performance.now();
-    let currentPhaseText = "PHASE 1: FADE-IN";
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
@@ -334,11 +326,6 @@ export default function GalaxyBackground({
           posArray[i3 + 2] = initialPositions[i3 + 2];
         }
         posAttr.needsUpdate = true;
-
-        if (currentPhaseText !== "PHASE 1: FADE-IN") {
-          currentPhaseText = "PHASE 1: FADE-IN";
-          setCurrentPhase("PHASE 1: FADE-IN");
-        }
       }
       // PHASE 2: CLUSTERING & SPIN (1.5s to 3.5s)
       else if (elapsed < 3.5) {
@@ -372,11 +359,6 @@ export default function GalaxyBackground({
           posArray[i3 + 2] = lerpZ;
         }
         posAttr.needsUpdate = true;
-
-        if (currentPhaseText !== "PHASE 2: CLUSTERING & SPIN") {
-          currentPhaseText = "PHASE 2: CLUSTERING & SPIN";
-          setCurrentPhase("PHASE 2: CLUSTERING & SPIN");
-        }
       }
       // PHASE 3: SPIRAL GALAXY FORMATION (3.5s to 6.0s)
       else if (elapsed < 6.0) {
@@ -399,11 +381,6 @@ export default function GalaxyBackground({
           posArray[i3 + 2] = cz + (gz - cz) * ease;
         }
         posAttr.needsUpdate = true;
-
-        if (currentPhaseText !== "PHASE 3: SPIRAL ARMS (r = a + bθ)") {
-          currentPhaseText = "PHASE 3: SPIRAL ARMS (r = a + bθ)";
-          setCurrentPhase("PHASE 3: SPIRAL ARMS (r = a + bθ)");
-        }
       }
       // CONTINUOUS MOTION & ORBITAL PHYSICS (t >= 6.0s)
       else {
@@ -424,11 +401,6 @@ export default function GalaxyBackground({
           posArray[i3 + 2] = armOffsetsZ[i];
         }
         posAttr.needsUpdate = true;
-
-        if (currentPhaseText !== "STEADY VORTEX // GALAXY ROTATION") {
-          currentPhaseText = "STEADY VORTEX // GALAXY ROTATION";
-          setCurrentPhase("STEADY VORTEX // GALAXY ROTATION");
-        }
       }
 
       // Subtle global disc pulsation
@@ -480,60 +452,6 @@ export default function GalaxyBackground({
         className="w-full h-full block bg-black"
         style={{ background: "#000000" }}
       />
-
-      {/* Galaxy Simulation Telemetry HUD & Controls */}
-      <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 pointer-events-auto flex items-center gap-2">
-        {showHUD ? (
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/90 border border-white/15 backdrop-blur-xl shadow-2xl text-[11px] font-mono text-neutral-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="font-bold tracking-wider text-white">
-              [VORTEX]:
-            </span>
-            <span className="text-white font-semibold">
-              {currentPhase}
-            </span>
-            <span className="text-neutral-500">•</span>
-            <span className="text-neutral-400">
-              {(particleCount / 1000).toFixed(0)}K STARS
-            </span>
-
-            {/* Replay Button */}
-            <button
-              type="button"
-              onClick={handleReset}
-              className="p-1.5 ml-1 rounded-full bg-white/[0.08] hover:bg-white text-neutral-300 hover:text-black transition-all cursor-pointer"
-              title="Replay Formation Simulation"
-              aria-label="Replay Formation Simulation"
-            >
-              <RotateCcw className="w-3 h-3" />
-            </button>
-
-            {/* Toggle Immersive Fullscreen Mode */}
-            <button
-              type="button"
-              onClick={toggleImmersive}
-              className="p-1.5 rounded-full bg-white/[0.08] hover:bg-white text-neutral-300 hover:text-black transition-all cursor-pointer"
-              title={isImmersive ? "Exit Immersive Mode" : "Full-Screen Galaxy Mode"}
-              aria-label={isImmersive ? "Exit Immersive Mode" : "Full-Screen Galaxy Mode"}
-            >
-              {isImmersive ? (
-                <Minimize2 className="w-3 h-3" />
-              ) : (
-                <Maximize2 className="w-3 h-3" />
-              )}
-            </button>
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setShowHUD(true)}
-            className="p-2 rounded-full bg-black/80 border border-white/20 text-white hover:bg-white hover:text-black transition-all shadow-lg"
-            title="Show Telemetry"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-          </button>
-        )}
-      </div>
 
       {/* Immersive Mode Banner / Exit Button */}
       {isImmersive && (
